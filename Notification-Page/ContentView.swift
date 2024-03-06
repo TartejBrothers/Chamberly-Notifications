@@ -5,7 +5,7 @@ struct ContentView: View {
         
         NavigationView {
             ZStack {
-                Color(red: 0.968626678, green: 0.9686279893, blue: 0.9987213016)
+                Color(red: 0.968626678, green: 0.9686279893, blue: 0.9987213016) // Original
                 
                 List {
                     Section(header: Text("Today")) {
@@ -31,7 +31,6 @@ struct ContentView: View {
                         UserNotification(name: "John", text: "Gave you super badge!", image: "john", viewed: false)
                     }
                 }
-                .background(Color.black)
                 .navigationBarTitle("Notifications", displayMode: .inline)
                 .toolbar {
                     ToolbarItem(placement: .navigationBarLeading) {
@@ -39,23 +38,25 @@ struct ContentView: View {
                             
                         }) {
                             Image("back")
-                                .foregroundColor(.blue)
+                                
                         }
                     }
                     
                     ToolbarItem(placement: .navigationBarTrailing) {
                         HStack {
                             Button(action: {
-                                // Handle settings button action
+                               
                             }) {
                                 Image("settings")
-                                    .foregroundColor(.blue)
+                                    
                             }
                         }
                     }
                 }
                 .listStyle(InsetGroupedListStyle())
             }
+            .background(Color(red: 0.968626678, green: 0.9686279893, blue: 0.9987213016))
+            
         }
     }
 }
