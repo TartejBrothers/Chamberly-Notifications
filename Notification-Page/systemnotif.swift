@@ -7,17 +7,18 @@
 
 import SwiftUI
 
-struct systemnotif: View{
+struct SystemNotification: View{
+    var text : String
     var body: some View{
         HStack{
             Image("logo")
-            Text("What’s up! don’t forget to add journal").bold().font(.system(size: 16))
-                .multilineTextAlignment(/*@START_MENU_TOKEN@*/.leading/*@END_MENU_TOKEN@*/)
+            Text("\(text)").bold().font(.system(size: 16))
+                .multilineTextAlignment(.leading)
         }
     }
 }
 struct systemnotif_Previews: PreviewProvider {
     static var previews: some View {
-        systemnotif()
+        SystemNotification(text: "Hello World")
     }
 }

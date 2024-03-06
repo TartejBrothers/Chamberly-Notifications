@@ -2,110 +2,64 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        ZStack{
-            Color(red: 0.968626678, green: 0.9686279893, blue: 0.9987213016)
-            NavigationView {
+        
+        NavigationView {
+            ZStack {
+                Color(red: 0.968626678, green: 0.9686279893, blue: 0.9987213016)
+                
                 List {
                     Section(header: Text("Today")) {
                         
-                        HStack {
-                            Image("iram")
-                                .resizable()
-                                .frame(width: 40, height: 40)
-                                .foregroundColor(.blue)
-                            VStack(alignment: .leading) {
-                                Text("Iram")
-                                    .font(.headline)
-                                Text("Joined your chamber")
-                                    .font(.subheadline)
-                            }
-                        }
+                        UserNotification(name: "Iram", text: "Gave you super badge!", image: "iram", viewed: true)
                         
-                        HStack{
-                            Image("logo")
-                            Text("What’s up! don’t forget to add journal").bold().font(.system(size: 16))
-                        }
+                        SystemNotification(text: "What’s up! don’t forget to add journal")
                         
-                        HStack {
-                            Image("john")
-                                .resizable()
-                                .frame(width: 40, height: 40)
-                                .foregroundColor(.blue)
-                            VStack(alignment: .leading) {
-                                Text("John")
-                                    .font(.headline)
-                                Text("Gave you super badge!").bold()
-                                    .font(.subheadline)
-                            }
-                        }
+                        UserNotification(name: "John", text: "Gave you super badge!", image: "john",viewed: false)
                     }
                     
                     Section(header: Text("Yesterday")) {
-                        HStack {
-                            Image(systemName: "person.crop.circle.fill")
-                                .resizable()
-                                .frame(width: 40, height: 40)
-                                .foregroundColor(.blue)
-                            VStack(alignment: .leading) {
-                                Text("Cui Yin")
-                                    .font(.headline)
-                                Text("Joined your chamber")
-                                    .font(.subheadline)
-                            }
-                        }
-                        HStack {
-                            Image(systemName: "person.crop.circle.fill")
-                                .resizable()
-                                .frame(width: 40, height: 40)
-                                .foregroundColor(.blue)
-                            VStack(alignment: .leading) {
-                                Text("Jack")
-                                    .font(.headline)
-                                Text("Joined your chamber")
-                                    .font(.subheadline)
-                            }
-                        }
+                        UserNotification(name: "Cui Yin", text: "Gave you super badge!", image: "cui", viewed: false)
+                        UserNotification(name: "Jack", text: "Gave you super badge!", image: "jack", viewed: false)
                     }
                     Section(header: Text("Last 7 days")) {
-                        UserNotification(name: "Iram", text: "Gave you super badge!", image: "iram")
-                        HStack {
-                            Image(systemName: "person.crop.circle.fill")
-                                .resizable()
-                                .frame(width: 40, height: 40)
+                        
+                        UserNotification(name: "Iram", text: "Gave you super badge!", image: "iram", viewed: false)
+                        SystemNotification(text: "It’s been a while since you joined any chamber.")
+                        UserNotification(name: "Cindy", text: "Joined Your Chamber", image: "cindy", viewed: true)
+                    }
+                    Section(header: Text("Older Notifications")) {
+                        UserNotification(name: "John", text: "Gave you super badge!", image: "john", viewed: false)
+                    }
+                }
+                .background(Color.black)
+                .navigationBarTitle("Notifications", displayMode: .inline)
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        Button(action: {
+                            
+                        }) {
+                            Image("back")
                                 .foregroundColor(.blue)
-                            VStack(alignment: .leading) {
-                                Text("Cindy")
-                                    .font(.headline)
-                                Text("Joined your chamber")
-                                    .font(.subheadline)
-                            }
                         }
                     }
-                    Section(header: Text("aill?")) {
+                    
+                    ToolbarItem(placement: .navigationBarTrailing) {
                         HStack {
-                            Image(systemName: "person.crop.circle.fill")
-                                .resizable()
-                                .frame(width: 40, height: 40)
-                                .foregroundColor(.blue)
-                            VStack(alignment: .leading) {
-                                Text("Sunny")
-                                    .font(.headline)
-                                Text("Joined your chamber")
-                                    .font(.subheadline)
+                            Button(action: {
+                                // Handle settings button action
+                            }) {
+                                Image("settings")
+                                    .foregroundColor(.blue)
                             }
                         }
                     }
                 }
-                .background(Color.black)
-                .navigationBarTitle("Notifications")
                 .listStyle(InsetGroupedListStyle())
-                
-            }.background(Color.black)
-            
-            
+            }
         }
     }
 }
+
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()

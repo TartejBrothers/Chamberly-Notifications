@@ -10,7 +10,7 @@ struct UserNotification: View {
     var name: String
     var text: String
     var image: String
-    @State private var viewed = false
+    @State var viewed : Bool
     
     var body: some View {
         HStack {
@@ -34,6 +34,6 @@ struct UserNotification: View {
 
 struct UserNotification_Previews: PreviewProvider {
     static var previews: some View {
-        UserNotification(name: "Iram", text: "Gave you super badge!", image: "iram")
+        UserNotification(name: "Iram", text: "Gave you super badge!", image: "iram", viewed: false)
     }
 }
