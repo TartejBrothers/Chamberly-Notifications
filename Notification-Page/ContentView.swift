@@ -9,7 +9,7 @@ struct ContentView: View {
                     Section(header: Text("Today")) {
                         
                         HStack {
-                            Image(systemName: "person.crop.circle.fill")
+                            Image("iram")
                                 .resizable()
                                 .frame(width: 40, height: 40)
                                 .foregroundColor(.blue)
@@ -21,15 +21,20 @@ struct ContentView: View {
                             }
                         }
                         
+                        HStack{
+                            Image("logo")
+                            Text("What’s up! don’t forget to add journal").bold().font(.system(size: 16))
+                        }
+                        
                         HStack {
-                            Image(systemName: "person.crop.circle.fill")
+                            Image("john")
                                 .resizable()
                                 .frame(width: 40, height: 40)
                                 .foregroundColor(.blue)
                             VStack(alignment: .leading) {
                                 Text("John")
                                     .font(.headline)
-                                Text("Gave you super badge!")
+                                Text("Gave you super badge!").bold()
                                     .font(.subheadline)
                             }
                         }
@@ -62,18 +67,7 @@ struct ContentView: View {
                         }
                     }
                     Section(header: Text("Last 7 days")) {
-                        HStack {
-                            Image(systemName: "person.crop.circle.fill")
-                                .resizable()
-                                .frame(width: 40, height: 40)
-                                .foregroundColor(.blue)
-                            VStack(alignment: .leading) {
-                                Text("David")
-                                    .font(.headline)
-                                Text("Gave you super badge!")
-                                    .font(.subheadline)
-                            }
-                        }
+                        UserNotification(name: "Iram", text: "Gave you super badge!", image: "iram")
                         HStack {
                             Image(systemName: "person.crop.circle.fill")
                                 .resizable()
