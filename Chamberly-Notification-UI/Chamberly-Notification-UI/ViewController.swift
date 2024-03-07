@@ -1,4 +1,130 @@
 import UIKit
+class UserNotificationTableViewCell: UITableViewCell {
+    let userImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        setupViews()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        setupViews()
+    }
+    
+    private func setupViews() {
+        contentView.backgroundColor = .white // Set background color for list element
+        contentView.layer.cornerRadius = 20 // Set corner radius for rounded appearance
+        contentView.layer.masksToBounds = true
+        
+        userImageView.layer.cornerRadius = 20 // Set corner radius for image view
+        userImageView.layer.masksToBounds = true // Clip to bounds
+        
+        contentView.addSubview(userImageView)
+        
+        NSLayoutConstraint.activate([
+            userImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
+            userImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+            userImageView.widthAnchor.constraint(equalToConstant: 40),
+            userImageView.heightAnchor.constraint(equalToConstant: 40)
+        ])
+    }
+    
+    func configure(userName: String, message: String) {
+        userImageView.image = UIImage(named: userName.lowercased())
+        
+        let nameLabel = UILabel()
+        nameLabel.text = userName
+        nameLabel.font = UIFont.boldSystemFont(ofSize: 16)
+        nameLabel.numberOfLines = 0
+        nameLabel.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(nameLabel)
+        
+        let messageLabel = UILabel()
+        messageLabel.text = message
+        messageLabel.numberOfLines = 0
+        messageLabel.font = UIFont.systemFont(ofSize: 16)
+        messageLabel.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(messageLabel)
+        
+        NSLayoutConstraint.activate([
+            nameLabel.leadingAnchor.constraint(equalTo: userImageView.trailingAnchor, constant: 8),
+            nameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+            nameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
+            
+            messageLabel.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor),
+            messageLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 4),
+            messageLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
+            messageLabel.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: -8)
+        ])
+    }
+}
+
+class SystemNotificationTableViewCell: UITableViewCell {
+    let systemImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        setupViews()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        setupViews()
+    }
+    
+    private func setupViews() {
+        contentView.backgroundColor = .white // Set background color for list element
+        contentView.layer.cornerRadius = 20 // Set corner radius for rounded appearance
+        contentView.layer.masksToBounds = true // Clip to bounds
+        
+        systemImageView.layer.cornerRadius = 20 // Set corner radius for image view
+        systemImageView.layer.masksToBounds = true // Clip to bounds
+        
+        contentView.addSubview(systemImageView)
+        
+        NSLayoutConstraint.activate([
+            systemImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
+            systemImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+            systemImageView.widthAnchor.constraint(equalToConstant: 40),
+            systemImageView.heightAnchor.constraint(equalToConstant: 40)
+        ])
+    }
+    
+    func configure(message: String, isSystemNotification: Bool) {
+        if isSystemNotification {
+            systemImageView.image = UIImage(named: "logo")
+            
+            let messageLabel = UILabel()
+            messageLabel.text = message
+            messageLabel.numberOfLines = 0
+            messageLabel.font = UIFont.systemFont(ofSize: 16)
+            messageLabel.translatesAutoresizingMaskIntoConstraints = false
+            contentView.addSubview(messageLabel)
+            
+            NSLayoutConstraint.activate([
+                messageLabel.leadingAnchor.constraint(equalTo: systemImageView.trailingAnchor, constant: 8),
+                messageLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+                messageLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
+                messageLabel.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: -8)
+            ])
+        } else {
+            textLabel?.text = message
+            textLabel?.numberOfLines = 0
+            textLabel?.font = UIFont.systemFont(ofSize: 16)
+        }
+    }
+}
 
 class ViewController: UIViewController {
     // Data for the sections and notifications
@@ -19,6 +145,9 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Set background color for the entire UI
+        view.backgroundColor = UIColor(red: 242/255, green: 242/255, blue: 247/255, alpha: 1.0)
         
         // Set up the top notification bar
         let topNotificationBar = UIView()
@@ -64,8 +193,8 @@ class ViewController: UIViewController {
         // Set up the table view
         view.addSubview(tableView)
         NSLayoutConstraint.activate([
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16), // Add left padding
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16), // Add right padding
             tableView.topAnchor.constraint(equalTo: topNotificationBar.bottomAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
@@ -104,9 +233,15 @@ extension ViewController: UITableViewDataSource {
                 userName = indexPath.section == 1 ? "Jack" : "John"
             }
             cell.configure(userName: userName, message: notifications[indexPath.section][indexPath.row])
+            
+            // Set corner radius and masksToBounds for contentView of each cell
+            cell.contentView.layer.cornerRadius = 20
+            cell.contentView.layer.masksToBounds = true
+            
             return cell
         }
     }
+
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return sections[section]
@@ -119,94 +254,7 @@ extension ViewController: UITableViewDelegate {
         return UITableView.automaticDimension
     }
 }
-// Custom UITableViewCell for User Notification
-class UserNotificationTableViewCell: UITableViewCell {
-    let userImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        return imageView
-    }()
-    
-    func configure(userName: String, message: String) {
-        userImageView.image = UIImage(named: userName.lowercased())
-        contentView.addSubview(userImageView)
-        
-        NSLayoutConstraint.activate([
-            userImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
-            userImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
-            userImageView.widthAnchor.constraint(equalToConstant: 40),
-            userImageView.heightAnchor.constraint(equalToConstant: 40)
-        ])
-        
-        let nameLabel = UILabel()
-        nameLabel.text = userName
-        nameLabel.font = UIFont.boldSystemFont(ofSize: 16)
-        nameLabel.numberOfLines = 0
-        nameLabel.translatesAutoresizingMaskIntoConstraints = false
-        contentView.addSubview(nameLabel)
-        
-        let messageLabel = UILabel()
-        messageLabel.text = message
-        messageLabel.numberOfLines = 0
-        messageLabel.font = UIFont.systemFont(ofSize: 16)
-        messageLabel.translatesAutoresizingMaskIntoConstraints = false
-        contentView.addSubview(messageLabel)
-        
-        NSLayoutConstraint.activate([
-            nameLabel.leadingAnchor.constraint(equalTo: userImageView.trailingAnchor, constant: 8),
-            nameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
-            nameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
-            
-            messageLabel.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor),
-            messageLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 4),
-            messageLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
-            messageLabel.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: -8)
-        ])
-    }
-}
 
-// Custom UITableViewCell for System Notification
-class SystemNotificationTableViewCell: UITableViewCell {
-    let systemImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        return imageView
-    }()
-    
-    func configure(message: String, isSystemNotification: Bool) {
-        if isSystemNotification {
-            systemImageView.image = UIImage(named: "logo")
-            contentView.addSubview(systemImageView)
-            
-            NSLayoutConstraint.activate([
-                systemImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
-                systemImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
-                systemImageView.widthAnchor.constraint(equalToConstant: 40),
-                systemImageView.heightAnchor.constraint(equalToConstant: 40)
-            ])
-            
-            let messageLabel = UILabel()
-            messageLabel.text = message
-            messageLabel.numberOfLines = 0
-            messageLabel.font = UIFont.systemFont(ofSize: 16)
-            messageLabel.translatesAutoresizingMaskIntoConstraints = false
-            contentView.addSubview(messageLabel)
-            
-            NSLayoutConstraint.activate([
-                messageLabel.leadingAnchor.constraint(equalTo: systemImageView.trailingAnchor, constant: 8),
-                messageLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
-                messageLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
-                messageLabel.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: -8)
-            ])
-        } else {
-            textLabel?.text = message
-            textLabel?.numberOfLines = 0
-            textLabel?.font = UIFont.systemFont(ofSize: 16)
-        }
-    }
-}
 
 #if DEBUG
 import SwiftUI
