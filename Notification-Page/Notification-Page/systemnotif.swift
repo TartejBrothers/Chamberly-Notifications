@@ -10,7 +10,7 @@ import SwiftUI
 struct SystemNotification: View{
     var text : String
     var body: some View{
-        HStack{
+        HStack(spacing: 10){
             Image("logo")
             Text("\(text)").bold().font(.system(size: 16))
                 .multilineTextAlignment(.leading)

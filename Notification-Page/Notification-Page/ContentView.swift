@@ -10,25 +10,25 @@ struct ContentView: View {
                 List {
                     Section(header: Text("Today")) {
                         
-                        UserNotification(name: "Iram", text: "Gave you super badge!", image: "iram", viewed: true)
+                        UserNotification(name: "Iram", text: "Gave you super badge!", image: "iram",time: "18 mins Ago", viewed: true)
                         
                         SystemNotification(text: "What’s up! don’t forget to add journal")
                         
-                        UserNotification(name: "John", text: "Gave you super badge!", image: "john",viewed: false)
+                        UserNotification(name: "John", text: "Gave you super badge!", image: "john",time: "18 mins Ago", viewed: false)
                     }
                     
                     Section(header: Text("Yesterday")) {
-                        UserNotification(name: "Cui Yin", text: "Gave you super badge!", image: "cui", viewed: false)
-                        UserNotification(name: "Jack", text: "Gave you super badge!", image: "jack", viewed: false)
+                        UserNotification(name: "Cui Yin", text: "Gave you super badge!", image: "cui",time: "18 mins Ago", viewed: false)
+                        UserNotification(name: "Jack", text: "Gave you super badge!", image: "jack", time: "18 mins Ago",viewed: false)
                     }
                     Section(header: Text("Last 7 days")) {
                         
-                        UserNotification(name: "Iram", text: "Gave you super badge!", image: "iram", viewed: false)
+                        UserNotification(name: "Iram", text: "Gave you super badge!", image: "iram", time: "18 mins Ago", viewed: false)
                         SystemNotification(text: "It’s been a while since you joined any chamber.")
-                        UserNotification(name: "Cindy", text: "Joined Your Chamber", image: "cindy", viewed: true)
+                        UserNotification(name: "Cindy", text: "Joined Your Chamber", image: "cindy",time: "18 mins Ago", viewed: true)
                     }
                     Section(header: Text("Older Notifications")) {
-                        UserNotification(name: "John", text: "Gave you super badge!", image: "john", viewed: false)
+                        UserNotification(name: "John", text: "Gave you super badge!", image: "john",time: "18 mins Ago", viewed: false)
                     }
                 }
                 .navigationBarTitle("Notifications", displayMode: .inline)

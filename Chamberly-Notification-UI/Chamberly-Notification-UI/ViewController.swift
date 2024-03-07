@@ -4,7 +4,7 @@ class ViewController: UIViewController {
     // Data for the sections and notifications
     let sections = ["Today", "Yesterday", "Last 7 days", "Older Notifications"]
     let notifications = [
-        ["Gave you super badge!", "What’s up! don’t forget to add journal", "Gave you super badge!"],
+        ["Gave you super badge!", "Gave you super badge!","Joined Your Chamber"],
         ["Gave you super badge!", "Gave you super badge!"],
         ["Gave you super badge!", "It’s been a while since you joined any chamber.", "Joined Your Chamber"],
         ["Gave you super badge!"]
@@ -20,14 +20,54 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Set up the top notification bar
+        let topNotificationBar = UIView()
+        topNotificationBar.backgroundColor = .white // Set the color according to your design
+        topNotificationBar.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(topNotificationBar)
+        
+        NSLayoutConstraint.activate([
+            topNotificationBar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            topNotificationBar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            topNotificationBar.topAnchor.constraint(equalTo: view.topAnchor),
+            topNotificationBar.heightAnchor.constraint(equalToConstant: 80) // Adjust height as needed
+        ])
+        
+        // Add "Notification" title label
+        let titleLabel = UILabel()
+        titleLabel.text = "Notifications"
+        titleLabel.font = UIFont.systemFont(ofSize: 24, weight: .bold) // Adjust font size and weight
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        topNotificationBar.addSubview(titleLabel)
+        
+        // Add back button
+        let backButton = UIImageView(image: UIImage(named: "back"))
+        backButton.translatesAutoresizingMaskIntoConstraints = false
+        topNotificationBar.addSubview(backButton)
+        
+        // Add settings button
+        let settingsButton = UIImageView(image: UIImage(named: "settings"))
+        settingsButton.translatesAutoresizingMaskIntoConstraints = false
+        topNotificationBar.addSubview(settingsButton)
+        
+        NSLayoutConstraint.activate([
+            titleLabel.centerXAnchor.constraint(equalTo: topNotificationBar.centerXAnchor),
+            titleLabel.centerYAnchor.constraint(equalTo: topNotificationBar.centerYAnchor),
+            
+            backButton.leadingAnchor.constraint(equalTo: topNotificationBar.leadingAnchor, constant: 16),
+            backButton.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor),
+            
+            settingsButton.trailingAnchor.constraint(equalTo: topNotificationBar.trailingAnchor, constant: -16),
+            settingsButton.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor)
+        ])
+        
         // Set up the table view
-        view.backgroundColor = UIColor(red: 0.968626678, green: 0.9686279893, blue: 0.9987213016, alpha: 1.0)
         view.addSubview(tableView)
         NSLayoutConstraint.activate([
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.topAnchor.constraint(equalTo: topNotificationBar.bottomAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
         
         tableView.dataSource = self
@@ -53,11 +93,16 @@ extension ViewController: UITableViewDataSource {
         // Create and configure the appropriate cell based on the section
         if indexPath.section == 2 && indexPath.row == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "SystemNotificationCell", for: indexPath) as! SystemNotificationTableViewCell
-            cell.configure(message: notifications[indexPath.section][indexPath.row])
+            cell.configure(message: notifications[indexPath.section][indexPath.row], isSystemNotification: true)
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "UserNotificationCell", for: indexPath) as! UserNotificationTableViewCell
-            let userName = indexPath.section == 0 ? "Iram" : "John" // Example names, you should fetch the appropriate name from your data
+            let userName: String
+            if indexPath.section == 0 {
+                userName = indexPath.row == 0 ? "Iram" : "Cindy"
+            } else {
+                userName = indexPath.section == 1 ? "Jack" : "John"
+            }
             cell.configure(userName: userName, message: notifications[indexPath.section][indexPath.row])
             return cell
         }
@@ -130,30 +175,36 @@ class SystemNotificationTableViewCell: UITableViewCell {
         return imageView
     }()
     
-    func configure(message: String) {
-        systemImageView.image = UIImage(named: "logo")
-        contentView.addSubview(systemImageView)
-        
-        NSLayoutConstraint.activate([
-            systemImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
-            systemImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
-            systemImageView.widthAnchor.constraint(equalToConstant: 40),
-            systemImageView.heightAnchor.constraint(equalToConstant: 40)
-        ])
-        
-        let messageLabel = UILabel()
-        messageLabel.text = message
-        messageLabel.numberOfLines = 0
-        messageLabel.font = UIFont.systemFont(ofSize: 16)
-        messageLabel.translatesAutoresizingMaskIntoConstraints = false
-        contentView.addSubview(messageLabel)
-        
-        NSLayoutConstraint.activate([
-            messageLabel.leadingAnchor.constraint(equalTo: systemImageView.trailingAnchor, constant: 8),
-            messageLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
-            messageLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
-            messageLabel.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: -8)
-        ])
+    func configure(message: String, isSystemNotification: Bool) {
+        if isSystemNotification {
+            systemImageView.image = UIImage(named: "logo")
+            contentView.addSubview(systemImageView)
+            
+            NSLayoutConstraint.activate([
+                systemImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
+                systemImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+                systemImageView.widthAnchor.constraint(equalToConstant: 40),
+                systemImageView.heightAnchor.constraint(equalToConstant: 40)
+            ])
+            
+            let messageLabel = UILabel()
+            messageLabel.text = message
+            messageLabel.numberOfLines = 0
+            messageLabel.font = UIFont.systemFont(ofSize: 16)
+            messageLabel.translatesAutoresizingMaskIntoConstraints = false
+            contentView.addSubview(messageLabel)
+            
+            NSLayoutConstraint.activate([
+                messageLabel.leadingAnchor.constraint(equalTo: systemImageView.trailingAnchor, constant: 8),
+                messageLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+                messageLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
+                messageLabel.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: -8)
+            ])
+        } else {
+            textLabel?.text = message
+            textLabel?.numberOfLines = 0
+            textLabel?.font = UIFont.systemFont(ofSize: 16)
+        }
     }
 }
 
