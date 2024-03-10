@@ -1,9 +1,3 @@
-//
-//  systemnotif.swift
-//  Notification-Page
-//
-//  Created by Taranjeet Singh Bedi on 06/03/24.
-//
 
 import SwiftUI
 
