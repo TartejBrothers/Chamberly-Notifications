@@ -10,7 +10,7 @@ import SwiftUI
 
 struct UserNotification2: View {
     var name: String
-    var text: String = "Gave you a Super Badge! "
+    var text: String = "Gave you a Super Badge!"
     var image: String
     var time: String
     

@@ -1,3 +1,9 @@
+//
+//  SystemNotification.swift
+//  Notification-Page
+//
+//  Created by srivatsa davuluri on 10/03/24.
+//
 
 import SwiftUI
 
@@ -17,6 +23,7 @@ struct SystemNotification: View{
 }
 struct systemnotif_Previews: PreviewProvider {
     static var previews: some View {
-        SystemNotification(text: "Hello World")
+        SystemNotification(text: "This is a system dummy text! ")
     }
 }
+

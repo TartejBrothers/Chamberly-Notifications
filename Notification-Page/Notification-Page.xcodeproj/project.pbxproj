@@ -11,7 +11,7 @@
 		0840DF462B98A02C00020DC2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0840DF452B98A02C00020DC2 /* ContentView.swift */; };
 		0840DF482B98A02D00020DC2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0840DF472B98A02D00020DC2 /* Assets.xcassets */; };
 		0840DF4C2B98A02D00020DC2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0840DF4B2B98A02D00020DC2 /* Preview Assets.xcassets */; };
-		0840DF5D2B98A79B00020DC2 /* systemnotif.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0840DF5C2B98A79B00020DC2 /* systemnotif.swift */; };
+		0840DF5D2B98A79B00020DC2 /* SystemNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0840DF5C2B98A79B00020DC2 /* SystemNotification.swift */; };
 		0840DF5F2B98A89600020DC2 /* UserNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0840DF5E2B98A89600020DC2 /* UserNotification.swift */; };
 		F9942CEA2B9E1A220071E3FD /* JoinNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9942CE92B9E1A220071E3FD /* JoinNotification.swift */; };
 		F9942CEC2B9E1A410071E3FD /* UserNotification2.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9942CEB2B9E1A410071E3FD /* UserNotification2.swift */; };
@@ -24,7 +24,7 @@
 		0840DF472B98A02D00020DC2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0840DF492B98A02D00020DC2 /* Notification_Page.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Notification_Page.entitlements; sourceTree = "<group>"; };
 		0840DF4B2B98A02D00020DC2 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		0840DF5C2B98A79B00020DC2 /* systemnotif.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = systemnotif.swift; sourceTree = "<group>"; };
+		0840DF5C2B98A79B00020DC2 /* SystemNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemNotification.swift; sourceTree = "<group>"; };
 		0840DF5E2B98A89600020DC2 /* UserNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotification.swift; sourceTree = "<group>"; };
 		F9942CE92B9E1A220071E3FD /* JoinNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinNotification.swift; sourceTree = "<group>"; };
 		F9942CEB2B9E1A410071E3FD /* UserNotification2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotification2.swift; sourceTree = "<group>"; };
@@ -65,7 +65,7 @@
 				0840DF5E2B98A89600020DC2 /* UserNotification.swift */,
 				F9942CEB2B9E1A410071E3FD /* UserNotification2.swift */,
 				F9942CE92B9E1A220071E3FD /* JoinNotification.swift */,
-				0840DF5C2B98A79B00020DC2 /* systemnotif.swift */,
+				0840DF5C2B98A79B00020DC2 /* SystemNotification.swift */,
 				0840DF472B98A02D00020DC2 /* Assets.xcassets */,
 				0840DF492B98A02D00020DC2 /* Notification_Page.entitlements */,
 				0840DF4A2B98A02D00020DC2 /* Preview Content */,
@@ -155,7 +155,7 @@
 				0840DF5F2B98A89600020DC2 /* UserNotification.swift in Sources */,
 				F9942CEC2B9E1A410071E3FD /* UserNotification2.swift in Sources */,
 				0840DF442B98A02C00020DC2 /* Notification_PageApp.swift in Sources */,
-				0840DF5D2B98A79B00020DC2 /* systemnotif.swift in Sources */,
+				0840DF5D2B98A79B00020DC2 /* SystemNotification.swift in Sources */,
 				F9942CEA2B9E1A220071E3FD /* JoinNotification.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

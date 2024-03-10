@@ -27,6 +27,7 @@ struct JoinNotification: View {
                         
                         Text("You joined \(name)'s Chamber! ")
                             .font(.system(size: 14))
+                            .multilineTextAlignment(.leading)
                             .foregroundColor(Color(#colorLiteral(red: 0.1764705882, green: 0.1843137255, blue: 0.337254902, alpha: 1.0)))
                             .bold()
                         

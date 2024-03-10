@@ -2,7 +2,7 @@
 //  Notification_PageApp.swift
 //  Notification-Page
 //
-//  Created by Taranjeet Singh Bedi on 06/03/24.
+//  Created by srivatsa davuluri on 10/03/24.
 //
 
 import SwiftUI
