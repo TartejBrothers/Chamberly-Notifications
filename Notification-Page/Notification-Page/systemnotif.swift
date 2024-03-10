@@ -12,7 +12,11 @@ struct SystemNotification: View{
     var body: some View{
         HStack(spacing: 10){
             Image("logo")
-            Text("\(text)").bold().font(.system(size: 16))
+            
+            
+            Text("\(text)")
+                .bold()
+                .font(.system(size: 14))
                 .multilineTextAlignment(.leading)
         }
     }
